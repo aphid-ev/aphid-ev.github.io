@@ -141,7 +141,7 @@ pwa:
 paginate: 10
 
 # The base URL of your site
-baseurl: "https://aphid.lhelge.se"
+baseurl: ""
 
 # ------------ The following options are not recommended to be modified ------------------
 
