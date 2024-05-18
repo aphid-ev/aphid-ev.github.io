@@ -20,7 +20,7 @@ tagline: When a bug meet a leaf
 
 description: A blog about an EV-conversion project of a VW Beetle with a Nissan Leaf drivetrain.
 
-url: "https://aphid-ev.github.io"
+url: "https://aphid.lhelge.se"
 
 github:
   username: aphid-ev
@@ -141,7 +141,7 @@ pwa:
 paginate: 10
 
 # The base URL of your site
-baseurl: ""
+baseurl: "https://aphid.lhelge.se"
 
 # ------------ The following options are not recommended to be modified ------------------
 
