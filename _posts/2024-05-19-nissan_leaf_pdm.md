@@ -20,7 +20,7 @@ Part | PDM (Male) | Wire Harness (Female)
 Housing | 7283-8750-50 | 7283-8750-30
 Terminal | ? | 7116-1466-02
 
-### Pinout
+**pinout:**
 
 Pin | Name     | Descriptions
 --- | -------- | ---

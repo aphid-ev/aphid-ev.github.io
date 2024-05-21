@@ -1,14 +1,13 @@
 ---
-title: Nissan Leaf inverter CAN protocol
+title: Nissan Leaf Traction Inverter
 categories: [Software]
 tags: [canbus, leaf, inverter]
 author: lhelge
 ---
 
-# Nissan Leaf inverter interface
 The traction inverter is the middle unit on the Nissan Leaf drive stack. It takes high voltage DC from the PDM and creates the 3-phase drive current in the motor
 
-The idea behind this post is to collect as much information as possible on this component both on the electrical and software interfaces.
+The idea behind this post is to collect as much information as possible on this component on the mechanical, electrical and software interfaces.
 
 ## Electrical interface
 The inverter is driven by 12 V and consumed around *TBD* A during full operation.
@@ -22,9 +21,9 @@ Part | Inverter (Male) | Wire Harness (Female)
 --- | --- | --- 
 Housing | *TBD* | *TBD*
 Terminal 1-45 | *TBD* | *TBD*
-Terminal 46-49 | *TBD | *TBD*
+Terminal 46-49 | *TBD* | *TBD*
 
-### Pinout
+**Pinout:**
 
 Pin | Name     | Descriptions
 --- | -------- | ---
