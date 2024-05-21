@@ -1,7 +1,7 @@
 ---
 title: The Aphid project
 categories: [Blog]
-tags: [blog, aphid]
+tags: [blog, aphid, vw]
 author: lhelge
 media_subpath: /assets/img/posts/
 image: aphid.png

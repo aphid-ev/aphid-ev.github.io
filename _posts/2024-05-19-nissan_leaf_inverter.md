@@ -1,7 +1,7 @@
 ---
 title: Nissan Leaf inverter CAN protocol
 categories: [Software]
-tags: [canbus, leaf, controller]
+tags: [canbus, leaf, inverter]
 author: lhelge
 ---
 
