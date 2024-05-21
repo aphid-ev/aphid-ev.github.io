@@ -7,7 +7,8 @@ Doing an EV-conversion is not cheap, if you want to sponsor us in any way please
 
 We're open to anything:
 - Parts
+- Tools
+- PCB or CNC manufacturing
 - PayPal
 - Crypto
-- PCB or CNC manufacturing
 - ...
