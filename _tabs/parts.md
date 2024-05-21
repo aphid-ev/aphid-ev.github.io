@@ -12,7 +12,7 @@ Motor | Nissan EM57 | Yes | [em57](/tags/em57)
 Inverter | Nissan Leaf gen 2 80 kW | No | [inverter](/tags/inverter)
 Battery | *TBD* | No | 
 VCM | DIY | Yes | [vcm](/tags/vcm)
-BMS | *TBD* | No | [bms](/tags/bms)
+BMS | *TBD* | No |
 Charger | Nissan Leaf PDM | No | [pdm](/tags/pdm)
 DC/DC | Nissan Leaf PDM | No | [pdm](/tags/pdm)
 Axle adapter | *TBD* | No |
