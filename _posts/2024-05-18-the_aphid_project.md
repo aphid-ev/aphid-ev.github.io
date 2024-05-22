@@ -1,6 +1,6 @@
 ---
 title: The Aphid project
-categories: [Blog]
+categories: [Project]
 tags: [blog, aphid, vw]
 author: lhelge
 pin: true

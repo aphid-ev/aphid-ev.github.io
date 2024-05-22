@@ -1,6 +1,6 @@
 ---
 title: Nissan Leaf Traction Inverter
-categories: [Software]
+categories: [Components]
 tags: [canbus, leaf, inverter]
 author: lhelge
 ---

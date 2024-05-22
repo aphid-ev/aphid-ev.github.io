@@ -1,6 +1,6 @@
 ---
 title: Nissan Leaf EV-CAN
-categories: [Components]
+categories: [Software]
 tags: [canbus, leaf, pdm, electrical, software]
 author: lhelge
 ---

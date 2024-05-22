@@ -22,4 +22,12 @@ Accelerator pedal | *TBD* | No |
 If you have any tips on where we can get these parts, or if you want to [sponsor](/sponsor) us, don't hesitate to send us an e-mail.
 
 
+## Suppliers
+Here are a list of EU suppliers that I've found so far.
+- [EVcreate](https://www.evcreate.com/)
+- [EV Europe](https://eveurope.eu/en/)
+- [EVShop.eu](https://evshop.eu/en/)
+- [Welg](https://www.welg.ee)
+
+
 
