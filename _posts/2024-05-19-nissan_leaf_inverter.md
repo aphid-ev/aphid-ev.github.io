@@ -78,7 +78,7 @@ Pin | Name     | Descriptions
 49  | *TBD*    | *TBD*
 
 ## CAN interface
-The PDM is connected on the EV-CAN network which is a standard ISO 11898-1 CAN bus with 11-bit identifiers and 500 kbit/s baudrate. For more detailed information on the bus and it's messages, see the [EV-CAN](/posts/nissan_leaf_ev_can) post.
+The PDM is connected on the EV-CAN network which is a standard ISO 11898-1 CAN bus with 11-bit identifiers and 500 kbit/s baudrate. For more detailed information on the bus and it's messages, see the [EV-CAN](/posts/nissan_leaf_ev-can) post.
 
 To keep the inverter happy, there are 3 can frames that needs to be sent periodically
 - ID = 0x11A
