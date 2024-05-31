@@ -44,14 +44,20 @@ The VCM shall have 3 different supply rails with the following current consumpti
 - Momentarily: **< 10 mA** (Just digital input)
 
 ## High side driver
-The high side driver shall be able to supply **3 A** continously, and **10 A** during inrush events, from the ignition input.
+The high side driver shall be able to supply **3 A** continously, and **10 A** during inrush events
+
+The high side driver shall be suppplied from the ignition input.
 
 ## Low side drivers
+The low side drivers shall be able to sink **1 A** continously, and **5 A** during inrush events. 
+
+The low side drivers shall be grounded to two separate pins on the connectors.
 
 # Mechanical
+Most mechanical properties is set by the ModICE enclosure.
 
 ## Enclosure
-The VCM shall use the Cinch MODice ME-MX enclosure with breather vent.
+The VCM shall use the Cinch ModICE ME-MX enclosure with breather vent.
 
 Part nbr: **581-01-30-075**
 
@@ -76,20 +82,23 @@ The VCM shall be mounted using **2 x M6** screws with washers. The discance betw
 # I/O
 The connectors have the following pinout
 
+![VCM pinout](/assets/img/posts/vcm_pinout.png)
+_VCM pinout_
+
 Pin | Keying A (black) | Keying B (light gray)
 --- | --- | ---
-1 | *TBD* | *TBD*
-2 | *TBD* | *TBD*
-3 | *TBD* | *TBD*
+1 | GND | LSD GND
+2 | CAN1 Low | CAN2 Low
+3 | CAN1 High | CAN2 High
 4 | *TBD* | *TBD*
-5 | *TBD* | *TBD*
-6 | *TBD* | *TBD*
-7 | *TBD* | *TBD*
-8 | *TBD* | *TBD*
-9 | *TBD* | *TBD*
-10 | *TBD* | *TBD*
-11 | *TBD* | *TBD*
-12 | *TBD* | *TBD*
+5 | Charger connected | *TBD*
+6 | *TBD* | Ignition
+7 | Accelerator GND | LSD GND
+8 | Accelerator IN1 | Lower contactor
+9 | Accelerator IN2 | Upper contactor
+10 | Accelerator +5V | Precharge
+11 | Brake IN | High side drive
+12 | B+ | Ignition
 
 ## CAN
 There are two CAN busses available on the device designed for 500 kbit/s ISO 11898-1 communication.
@@ -110,10 +119,25 @@ The low side drivers are controlled by the [VCM main application](/posts/vcm_mai
 The pre-charge output is used to control a smaller contactor in series with a high power resistor that can charge the inverter capacitor bank before closing the main contactor.
 
 ### Top contactor
+The top contactor output is used to control the main contactor on the positive terminal of the battery.
+
 ### Bottom contactor
+The top contactor output is used to control the main contactor on the negative terminal of the battery.
 
 ## Accelerator pedal
 The VCM shall be able to interface a dual channel electrical accelerator pedal based on 5V Hall effect sensors.
+
+### Accelerator +5V / GND
+The VCM shall be able to support the accelerator pedal with **5 VDC** at a maximum of **0.5 A**.
+
+### Accelerator Signal 1 & 2
+The VCM shall have two independent **0 - 5 VDC** sensor inputs from the accelerator pedal that are monitored for safety.
+
+## Brake
+The VCM shall have a 12 VDC input from the brake pedal to prevent positive torque and request regenerative brakeing from the inverter.
+
+## Charger connected
+The VCM shall have a 12 VDC input from the charging inlet notifying the VCM if a charging cable is connected.
 
 # Functional
 These are the high level functional requirements, see posts on [VCM main application](/posts/vcm_main_firmware) and [VCM monitor application](/posts/vcm_monitor_firmware) for more detailed functional requirements.
@@ -126,32 +150,56 @@ The VCM has the following functional states:
 
 ```mermaid
 stateDiagram-v2
-    Sleep --> Ready: Ignition on
+    Sleep --> Precharge: Ignition on
+    Precharge --> Ready: Precharge done
     Ready --> Drive: Crank
     Drive --> Ready: Ignition off
     Ready --> Sleep: 15 min
-    Sleep --> Charge: Charger connected
-    Charge --> Ready: Charger disconnected
+    Ready --> Charging: Charger connected
+    Charging --> Ready: Charger disconnected
     Drive --> Fault: Safety critical fault
-    Charge --> Fault: Safety critical fault
-    Fault --> Ready: Reset
+    Charging --> Fault: Safety critical fault
 ```
 
 ### Sleep
 During sleep the main DC/DC power supply inside the VCM is switched off all all electronic circuitry is unpowered, the only way to wake the VCM from sleep is to supply 12V power to the [ignition](#ignition) pin.
 
+High side | disabled
+Precharge | disabled
+Main contactors | disabled
+Torque: | not allowed
+
+### Precharge
+During the precharge state, the precharge contactor is activated to slowly (within seconds) charge the inverter capacitor bank through a power resistor. Once the inverter capacitor voltage has reached **90%** of the full battery voltage the VCM moves into the ready state.
+
+High side | enabled
+Precharge | enabled
+Main contactors | disabled
+Torque: | not allowed (N)
+
 ### Ready
+Once Precharge is done and the main contactors are closed, ready state is entered. It can also be entered by turning of the ignition while in drive state. After **15 min** of idling, the VCM will enter **sleep**
+
+High side | enabled
+Precharge | disabled
+Main contactors | enabled
+Torque: | not allowed (N)
 
 ### Drive
+If the key is turned to the **crank** position while in Ready mode, VCM moves into drive mode and starts to monitor accelerator pedals and providing corresponding torque request to inverter.
 
-### Charge
+High side | enabled
+Precharge | disabled
+Main contactors | enabled
+Torque: | allowed (F or R)
 
+### Charging
+If the charging cable is connected in **Ready** mode the VCM shall move into charging mode preventing the car to drive and allowing the PDM to charge HV battery if the cable is connected to 240 VAC.
 
-## Wakeup
-The VCM shall wake on a rising flank on the **Ignition** supply.
-
-## Sleep
-The VCM shall be awake for **15 minutes** after a falling flank on the **Ignition** supply. If charging is active the VCM shall stay awake until 15 minuters after disconnection 
+High side | enabled
+Precharge | disabled
+Main contactors | enabled
+Torque: | not allowed (N)
 
 ## Reset
 If there is a fault active that disabled the high side driver, the **crank** signal shall reset both the [VCM main application](/posts/vcm_main_firmware) and the [VCM monitor application](/posts/vcm_monitor_firmware).
