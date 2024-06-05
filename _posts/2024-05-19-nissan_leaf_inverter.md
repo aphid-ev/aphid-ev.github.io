@@ -77,6 +77,9 @@ Pin | Name     | Descriptions
 48  | *TBD*    | *TBD*
 49  | *TBD*    | *TBD*
 
+### Interlock
+The inverter contains an interlock circuit that will break a connection if the top lid of the inverter is opened. They are connected to pins *TBD* of the signal connector
+
 ## CAN interface
 The PDM is connected on the EV-CAN network which is a standard ISO 11898-1 CAN bus with 11-bit identifiers and 500 kbit/s baudrate. For more detailed information on the bus and it's messages, see the [EV-CAN](/posts/nissan_leaf_ev-can) post.
 
@@ -84,6 +87,7 @@ To keep the inverter happy, there are 3 can frames that needs to be sent periodi
 - ID = 0x11A
 - ID = 0x1D4
 - ID = 0x50B
+
 
 ## Start procedure
 1. Switch on 12V power

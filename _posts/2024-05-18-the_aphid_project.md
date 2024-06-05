@@ -5,7 +5,7 @@ tags: [blog, aphid, vw]
 author: lhelge
 pin: true
 media_subpath: /assets/img/posts/
-image: aphid.png
+image: aphid.webp
 ---
 
 # The Aphid project

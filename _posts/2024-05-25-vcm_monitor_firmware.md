@@ -53,8 +53,11 @@ If the main application fail to respond within **100 ms** on a status request on
 ### Faulty accelerator signal
 If the dual channel accelerator pedal input isn't within **10%** of eachother, this fault will be triggered.
 
+### Faulty accelerator supply
+The VCM supply 5 V to the accelerator hall effect sensors. If this is outside of **±10%** a fault should be raised.
+
 ### Faulty torque request
-If torque is outside of **10%** fo the accelerator pedal input for more than **200 ms** or if an accelerating torque is requested while braking.
+If torque is outside of **10%** fo the accelerator pedal input for more than **200 ms** or if an accelerating torque is requested while **braking**.
 
 ### Faulty direction change
 The the direction is changed from forward to reverse or vice versa while motor speed is above **TBD** rpm.

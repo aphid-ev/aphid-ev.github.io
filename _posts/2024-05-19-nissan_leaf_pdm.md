@@ -47,6 +47,9 @@ Pin | Name     | Descriptions
 21  | *TBD*    | *TBD*
 22  | *TBD*    | *TBD*
 
+### Interlock
+The PDM contains an interlock circuit that will break a connection it the top lid or the lid of the inverter busbar screws is opened. They are connected to pins *TBD* of the signal connector
+
 ## CAN interface
 The PDM is connected on the EV-CAN network which is a standard ISO 11898-1 CAN bus with 11-bit identifiers and 500 kbit/s baudrate.
 
