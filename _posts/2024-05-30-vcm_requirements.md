@@ -140,13 +140,13 @@ The VCM shall have a 12 VDC input from the brake pedal to prevent positive torqu
 The VCM shall have a 12 VDC input from the charging inlet notifying the VCM if a charging cable is connected.
 
 ## Waterpump PWM
-The waterpump is controlled and monitored using a 5V PWN signal described in this [post](/posts/nissan_tesla_waterpump)
+The waterpump is controlled and monitored using a 5V PWM signal described in this [post](/posts/nissan_tesla_waterpump)
 
 ### PWM Output
-The VCM shall control the waterpump speed using a PWM signal according to [post](/posts/nissan_tesla_waterpump/#pwm-output)
+The VCM shall control the waterpump speed according to [Waterpump PWM](/posts/nissan_tesla_waterpump/#pwm-input)
 
-### PWM Input
-The VCM shall monitor the waterpump speed reading the rpm output signal accoring to [post](/posts/nissan_tesla_waterpump/#pwm-input)
+### RPM Input
+The VCM shall monitor the waterpump speed reading the rpm output signal accoring to [post](/posts/nissan_tesla_waterpump/#rpm-output)
 
 # Functional
 These are the high level functional requirements, see posts on [VCM main application](/posts/vcm_main_firmware) and [VCM monitor application](/posts/vcm_monitor_firmware) for more detailed functional requirements.
