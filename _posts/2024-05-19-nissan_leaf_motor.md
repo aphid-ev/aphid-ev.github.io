@@ -5,7 +5,6 @@ tags: [leaf, em57, electrical]
 author: lhelge
 ---
 
-# Nissan Leaf EM57 motor
 The Nissan EM57 motor has been used on several different cars over the years.
 
 ## Mechanical interface
@@ -45,6 +44,9 @@ Pin | Name   | Descriptions
 6   | Cos -  | Negative cosinus output
 7   | Cos +  | Positive cosinus output
 8   | Ex     | Resolver excitation coil
+
+## Cooling
+The motor needs coolant flowing through the cooling circuit. More info *TBD*
 
 # References
 - OpenInverter project: [Wiki](https://openinverter.org/wiki/Nissan_Leaf_Motors)

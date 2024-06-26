@@ -100,6 +100,9 @@ To keep the inverter happy, there are 3 can frames that needs to be sent periodi
 2. Disconnect HV-power
 3. Switch off 12 V power.
 
+## Cooling
+The inverter needs coolant flowing through the cooling circuit. More info *TBD*
+
 # References
 - Service manuals found at: [NicoClub](https://www.nicoclub.com/nissan-service-manuals)
 - Reverse engineering [8Dromeda](http://productions.8dromeda.net/c55-leaf-inverter-protocol.html)

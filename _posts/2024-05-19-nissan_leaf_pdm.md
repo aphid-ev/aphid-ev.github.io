@@ -1,11 +1,10 @@
 ---
-title: Nissan Leaf PDM
+title: Nissan Leaf PDM (Power Delivery Module)
 categories: [Components]
 tags: [canbus, leaf, pdm, electrical, software]
 author: lhelge
 ---
 
-# Nissan PDM (Power Delivery Module)
 The PDM is the topmost unit on the Nissan Leaf drive stack, it manages power delivery for all high voltage components. In addition to this it also contains the on-board charger and the 12 V DC/DC converter to charge the 12 V battery.
 
 The idea behind this post is to collect as much information as possible on this component both on the electrical and software interfaces.
@@ -54,6 +53,9 @@ The PDM contains an interlock circuit that will break a connection it the top li
 The PDM is connected on the EV-CAN network which is a standard ISO 11898-1 CAN bus with 11-bit identifiers and 500 kbit/s baudrate.
 
 There will be a specific post for the EV-CAN network describing the messaging more in detail, but this post will go into the  specifics needed by the PDM to function outside of a full Nissan Leaf
+
+## Cooling
+The PDM needs coolant flowing through the cooling circuit. More info *TBD*
 
 # References
 - Service manuals found at: [NicoClub](https://www.nicoclub.com/nissan-service-manuals)

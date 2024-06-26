@@ -90,8 +90,8 @@ Pin | Keying A (black) | Keying B (light gray)
 1 | GND | LSD GND
 2 | CAN1 Low | CAN2 Low
 3 | CAN1 High | CAN2 High
-4 | *TBD* | *TBD*
-5 | Charger connected | *TBD*
+4 | *TBD* | Waterpump PWM Out
+5 | Charger connected | Waterpump PWM In
 6 | *TBD* | Ignition
 7 | Accelerator GND | LSD GND
 8 | Accelerator IN1 | Lower contactor
@@ -138,6 +138,15 @@ The VCM shall have a 12 VDC input from the brake pedal to prevent positive torqu
 
 ## Charger connected
 The VCM shall have a 12 VDC input from the charging inlet notifying the VCM if a charging cable is connected.
+
+## Waterpump PWM
+The waterpump is controlled and monitored using a 5V PWN signal described in this [post](/posts/nissan_tesla_waterpump)
+
+### PWM Output
+The VCM shall control the waterpump speed using a PWM signal according to [post](/posts/nissan_tesla_waterpump/#pwm-output)
+
+### PWM Input
+The VCM shall monitor the waterpump speed reading the rpm output signal accoring to [post](/posts/nissan_tesla_waterpump/#pwm-input)
 
 # Functional
 These are the high level functional requirements, see posts on [VCM main application](/posts/vcm_main_firmware) and [VCM monitor application](/posts/vcm_monitor_firmware) for more detailed functional requirements.
