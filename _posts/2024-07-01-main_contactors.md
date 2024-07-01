@@ -16,6 +16,6 @@ The main contactors together with the precharge circuit is an important part in 
 Each of the [batteries](/posts/batteries) has two Littlefuse `DCNEV250-M`
 
 ## Precharge
-Prechange is managed by a Littlefuse `DCNSEV30-B` in series with a `10Ω 100W` power resistor. These are couples in paralell to the positive main contactor in the [front battery](/posts/batteries/#front).
+Prechange is managed by a Littlefuse `DCNSEV30-B` in series with a `10Ω 100W` power resistor. These are couples in paralell to the positive main contactor in the [front battery](/posts/batteries/#front-battery).
 
 **&lt;IMAGE GOES HERE&gt;**
