@@ -15,13 +15,16 @@ The inverter is driven by 12 V and consumed around *TBD* A during full operation
 The high voltage inputs contains a considerable ammount of capacitance and should not be connected to the battery without pre-charging first.
 
 ### Connector
-The main data connector in the inverter is a *TBD* connector.
+The main signal connector on the inverter seems to be a proprietary connector. There are indications that the same has been used for the *Toyota Prius Gen3 inverter* and has the Toyota part number *G9260-47010*. I will try to order one and confirm this. (See referenced post on openinverter forums)
+
+![Leaf Gen2 inverter connector](/assets/img/posts/inverter_connector.jpg)
+_Nissan Leaf Gen2 inverter signal connector_
 
 Part | Inverter (Male) | Wire Harness (Female)
 --- | --- | --- 
-Housing | *TBD* | *TBD*
-Terminal 1-45 | *TBD* | *TBD*
-Terminal 46-49 | *TBD* | *TBD*
+Housing | *TBD* | Toyota G9260-47010
+Terminal 1-45 (small) | *TBD* | TE 1612290-1
+Terminal 46-49 (large) | *TBD* | Yazaki 7116-4025
 
 **Pinout:**
 
@@ -106,3 +109,4 @@ The inverter needs coolant flowing through the cooling circuit. More info *TBD*
 # References
 - Service manuals found at: [NicoClub](https://www.nicoclub.com/nissan-service-manuals)
 - Reverse engineering [8Dromeda](http://productions.8dromeda.net/c55-leaf-inverter-protocol.html)
+- openinverter forums: [(Prius) Gen3 inverter connector](https://openinverter.org/forum/viewtopic.php?p=60964)

@@ -12,12 +12,14 @@ The idea behind this post is to collect as much information as possible on this 
 ## Electrical interface
 
 ### Signal connector
-The main data/signal connector on the PDM is a 22-pin Yasaki CVT circular connector. 
+The main data/signal connector on the PDM is a 36-pin Yasaki CVT circular connector. 
 
 Part | PDM (Male) | Wire Harness (Female)
 --- | --- | --- 
-Housing | 7283-8750-50 | 7283-8750-30
-Terminal | ? | 7116-1466-02
+Housing | 7236-1525-30 | 7289-9871-40 
+Terminal | ? | 7116-4415-02
+Wire Seal | ? | 7158-3165-90 
+Blind plug | ? | 7158-3169-40 
 
 **pinout:**
 
@@ -45,6 +47,20 @@ Pin | Name     | Descriptions
 20  | *TBD*    | *TBD*
 21  | *TBD*    | *TBD*
 22  | *TBD*    | *TBD*
+23  | *TBD*    | *TBD*
+24  | *TBD*    | *TBD*
+25  | *TBD*    | *TBD*
+26  | *TBD*    | *TBD*
+27  | *TBD*    | *TBD*
+28  | *TBD*    | *TBD*
+29  | *TBD*    | *TBD*
+30  | *TBD*    | *TBD*
+31  | *TBD*    | *TBD*
+32  | *TBD*    | *TBD*
+33  | *TBD*    | *TBD*
+34  | *TBD*    | *TBD*
+35  | *TBD*    | *TBD*
+36  | *TBD*    | *TBD*
 
 ### Interlock
 The PDM contains an interlock circuit that will break a connection it the top lid or the lid of the inverter busbar screws is opened. They are connected to pins *TBD* of the signal connector
