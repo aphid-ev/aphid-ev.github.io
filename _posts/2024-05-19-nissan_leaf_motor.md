@@ -45,8 +45,11 @@ Pin | Name   | Descriptions
 7   | Cos +  | Positive cosinus output
 8   | Ex     | Resolver excitation coil
 
+The resolver calibration is stamped on the motor housing and must be written to the traction inverter after replacing motor/resolver. See YouTube video linked below.
+
 ## Cooling
 The motor needs coolant flowing through the cooling circuit. More info *TBD*
 
 # References
 - OpenInverter project: [Wiki](https://openinverter.org/wiki/Nissan_Leaf_Motors)
+- Nissan Leaf resolver write [YouTube](https://www.youtube.com/watch?v=Of2vCYgblY4)

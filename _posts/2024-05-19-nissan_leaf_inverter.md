@@ -15,7 +15,7 @@ The inverter is driven by 12 V and consumed around *TBD* A during full operation
 The high voltage inputs contains a considerable ammount of capacitance and should not be connected to the battery without pre-charging first.
 
 ### Connector
-The main signal connector on the inverter seems to be a proprietary connector. There are indications that the same has been used for the *Toyota Prius Gen3 inverter* and has the Toyota part number *G9260-47010*. I will try to order one and confirm this. (See referenced post on openinverter forums)
+The main signal connector on the Gen2 80kW inverter seems to be a proprietary connector. There are indications that the same has been used for the *Toyota Prius Gen3 inverter* and has the Toyota part number *G9260-47010*. I will try to order one and confirm this. (See referenced post on openinverter forums)
 
 ![Leaf Gen2 inverter connector](/assets/img/posts/inverter_connector.jpg)
 _Nissan Leaf Gen2 inverter signal connector_
@@ -27,6 +27,11 @@ Terminal 1-45 (small) | *TBD* | TE 1612290-1
 Terminal 46-49 (large) | *TBD* | Yazaki 7116-4025
 
 **Pinout:**
+
+![Leaf Gen2 inverter connector](/assets/img/posts/inverter_pinout.png)
+_Nissan Leaf Gen2 inverter signal connector pinout_
+
+Not all pins are populated
 
 Pin | Name     | Descriptions
 --- | -------- | ---
@@ -43,20 +48,20 @@ Pin | Name     | Descriptions
 11  | *TBD*    | *TBD*
 12  | *TBD*    | *TBD*
 13  | *TBD*    | *TBD*
-14  | *TBD*    | *TBD*
-15  | *TBD*    | *TBD*
+14  | EV-CAN High | *TBD*
+15  | EV-CAN Low | *TBD*
 16  | *TBD*    | *TBD*
-17  | *TBD*    | *TBD*
-18  | *TBD*    | *TBD*
-19  | *TBD*    | *TBD*
-20  | *TBD*    | *TBD*
-21  | *TBD*    | *TBD*
+17  | Resolver S2 | *TBD*
+18  | Resolver S4 | *TBD*
+19  | Resolver R1 | *TBD* (Excitation coil?)
+20  | Resolver S1 | *TBD*
+21  | Resolver S3 | *TBD*
 22  | *TBD*    | *TBD*
 23  | *TBD*    | *TBD*
 24  | *TBD*    | *TBD*
 25  | *TBD*    | *TBD*
 26  | *TBD*    | *TBD*
-27  | *TBD*    | *TBD*
+27  | Resolver R2 | *TBD* (Excitation coil?)
 28  | *TBD*    | *TBD*
 29  | *TBD*    | *TBD*
 30  | *TBD*    | *TBD*
@@ -71,14 +76,16 @@ Pin | Name     | Descriptions
 39  | *TBD*    | *TBD*
 40  | *TBD*    | *TBD*
 41  | *TBD*    | *TBD*
-42  | *TBD*    | *TBD*
+42  | Ignition | Connect to Battery+ when ignition is on.
 43  | *TBD*    | *TBD*
-44  | *TBD*    | *TBD*
-45  | *TBD*    | *TBD*
-46  | *TBD*    | *TBD*
-47  | *TBD*    | *TBD*
-48  | *TBD*    | *TBD*
-49  | *TBD*    | *TBD*
+44  | Motor Temp GND | *TBD*
+45  | Motor Temp | *TBD*
+46 (large)  | B+    | Battery+, fused with 10A
+47 (large)  | B-    | Battery-, connect to GND
+48 (large)  | B+    | Battery+, fused with 10A
+49 (large)  | B-    | Battery-, connecto to GND
+
+Since the high power 12V supply is fused with 10 A, 1.5 mm<sup>2</sup> should be enough.
 
 ### Interlock
 The inverter contains an interlock circuit that will break a connection if the top lid of the inverter is opened. They are connected to pins *TBD* of the signal connector
