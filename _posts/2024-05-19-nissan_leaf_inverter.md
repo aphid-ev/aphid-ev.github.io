@@ -22,7 +22,8 @@ _Nissan Leaf Gen2 inverter signal connector_
 
 Part | Inverter (Male) | Wire Harness (Female)
 --- | --- | --- 
-Housing | *TBD* | Toyota G9260-47010
+Housing, 36p | *TBD* | Toyota G9260-47010
+Housing, 13p | *TBD* | Toyota G9266-47010
 Terminal 1-45 (small) | *TBD* | TE 1612290-1
 Terminal 46-49 (large) | *TBD* | Yazaki 7116-4025
 
