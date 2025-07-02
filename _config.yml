@@ -20,7 +20,7 @@ tagline: When a bug meet a leaf
 
 description: A blog about an EV-conversion project of a VW Beetle with a Nissan Leaf drivetrain.
 
-url: "https://aphid-ev.lhelge.se"
+url: "https://bladlus.se"
 
 github:
   username: aphid-ev
@@ -32,7 +32,7 @@ social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: LHelge
-  email: aphid-ev@lhelge.se
+  email: lhelge@bladlus.se
   links:
     # The first element serves as the copyright owner's link
     - https://github.com/aphid-ev
