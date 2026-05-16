@@ -16,3 +16,8 @@ The front battery will contain the [precharge](/posts/main_contactors/#precharge
 
 ## Rear battery
 *TBD*
+
+
+# Current shunt
+Shunt resistor: BAS-M-R0001-R-5.0
+Isolated ADC: AMC3306M05

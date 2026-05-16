@@ -73,5 +73,8 @@ There will be a specific post for the EV-CAN network describing the messaging mo
 ## Cooling
 The PDM needs coolant flowing through the cooling circuit. More info *TBD*
 
+## DC/DC
+The PDM contains a DC/DC that will charge the 12V battery from the high voltage battery in a similar fashion as an alternator of a car with a combustion engine.
+
 # References
 - Service manuals found at: [NicoClub](https://www.nicoclub.com/nissan-service-manuals)
