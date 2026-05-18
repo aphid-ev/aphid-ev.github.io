@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block page_title %}Not found — {{ site_title }}{% endblock page_title %}
+
+{% block content %}
+<div class="notfound">
+  <div class="code">404</div>
+  {% if not_found %}
+    <article class="article" style="text-align:left; max-width:none">
+      {{ not_found.content | safe }}
+    </article>
+  {% else %}
+    <h1>This page took the wrong wire.</h1>
+    <p>Whatever you were looking for isn't here. Try the
+    <a href="/blog/">build log</a> or the <a href="/wiki/">wiki</a>.</p>
+  {% endif %}
+</div>
+{% endblock content %}

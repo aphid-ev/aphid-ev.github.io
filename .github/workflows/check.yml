@@ -1,0 +1,14 @@
+name: Check build
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build site
+        uses: LHelge/aphid@v0.2.1

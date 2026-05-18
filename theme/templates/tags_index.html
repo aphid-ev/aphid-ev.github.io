@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block page_title %}Tags — {{ site_title }}{% endblock page_title %}
+
+{% block content %}
+<div class="page">
+  <header class="tag-header">
+    <span class="lbl">Index</span>
+    <h1>Tags</h1>
+    <span class="count">· {{ tags | length }} total</span>
+  </header>
+
+  {% if tags and tags | length > 0 %}
+    <div class="tag-cloud">
+      {% for t in tags %}
+        <a class="tag tag-large" href="/tags/{{ t.slug }}/">{{ t.name }}<span class="count">{{ t.count }}</span></a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p style="color: var(--fg-muted)">No tags yet.</p>
+  {% endif %}
+</div>
+{% endblock content %}

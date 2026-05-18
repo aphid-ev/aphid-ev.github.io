@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block nav_wiki %} class="active"{% endblock %}
+
+{% block content %}
+<div class="page-grid-3">
+  <aside class="wiki-sidebar">
+    {% for cat in wiki_categories %}
+      <div class="group">
+        <div class="group-h">{{ cat.name }} <span class="count">{{ cat.pages | length }}</span></div>
+        {% for p in cat.pages %}
+          <a href="{{ p.url }}"{% if p.url == url %} class="active"{% endif %}><span>{{ p.title }}</span></a>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </aside>
+
+  <div>
+    <div class="crumbs">
+      <a href="/">Home</a>
+      <span class="sep">/</span>
+      <a href="/wiki/">Wiki</a>
+      <span class="sep">/</span>
+      <span>{{ category }}</span>
+      <span class="sep">/</span>
+      <span>{{ title }}</span>
+    </div>
+
+    <div class="hero-eyebrow" style="display:inline-flex; margin-bottom: 6px">{{ category }} · canonical reference</div>
+    <h1 class="article-h1">{{ title }}</h1>
+
+    <div class="post-meta">
+      {% if tags %}
+        {% for t in tags %}<a class="tag" href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% endfor %}
+        <span class="sep">·</span>
+      {% endif %}
+      {% if updated %}<span class="mono">last edit {{ updated }}</span>
+      {% elif created %}<span class="mono">created {{ created }}</span>{% endif %}
+    </div>
+
+    <article class="article">
+      {% if description %}<p class="lede">{{ description }}</p>{% endif %}
+      {{ content | safe }}
+    </article>
+
+    {% if backlinks and backlinks | length > 0 %}
+      <section class="linked-from">
+        <div class="lf-h">
+          <span>Linked from the build log</span>
+          <span class="count">{{ backlinks | length }} post{% if backlinks | length != 1 %}s{% endif %} reference this page</span>
+        </div>
+        <ul class="linked-from-list">
+          {% for b in backlinks %}
+            <li><a href="{{ b.url }}">{{ b.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  </div>
+
+  {% if toc and toc | length > 0 %}
+    <aside class="toc">
+      <div class="toc-h">On this page</div>
+      <ul class="toc-list">
+        {% for h in toc %}
+          <li><a href="#{{ h.id }}" class="l{{ h.level }}">{{ h.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </aside>
+  {% else %}
+    <div></div>
+  {% endif %}
+</div>
+{% endblock content %}
