@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block page_title %}#{{ tag }} — {{ site_title }}{% endblock page_title %}
+
+{% block content %}
+<div class="page">
+  <div class="crumbs">
+    <a href="/">Home</a>
+    <span class="sep">/</span>
+    <a href="/tags/">Tags</a>
+    <span class="sep">/</span>
+    <span>{{ tag }}</span>
+  </div>
+
+  <header class="tag-header">
+    <span class="lbl">Tag</span>
+    <h1><span class="hash">#</span> {{ tag }}</h1>
+    {% set total = blog_posts | length + wiki_pages | length %}
+    <span class="count">· {{ total }} page{% if total != 1 %}s{% endif %}</span>
+  </header>
+
+  {% if blog_posts and blog_posts | length > 0 %}
+    <section class="tag-section">
+      <h2>Build log</h2>
+      {% for p in blog_posts %}
+        <a href="{{ p.url }}" class="post-row">
+          <div class="thumb-sm">{% if p.image %}<img src="{{ p.image }}" alt="">{% endif %}</div>
+          <div>
+            <div class="meta" style="margin-bottom:4px">
+              {% for t in p.tags | slice(end=3) %}<span class="tag">{{ t.name }}</span>{% endfor %}
+              {% if p.tags | length > 0 %}<span class="sep">·</span>{% endif %}
+              {% if p.created %}<span class="mono">{{ p.created }}</span><span class="sep">·</span>{% endif %}
+              <span class="mono">{{ p.reading_time_minutes }} min</span>
+            </div>
+            <h3>{{ p.title }}</h3>
+            {% if p.description %}<p class="excerpt">{{ p.description }}</p>{% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {% if wiki_pages and wiki_pages | length > 0 %}
+    <section class="tag-section">
+      <h2>Wiki</h2>
+      <ul style="list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap: var(--sp-3)">
+        {% for p in wiki_pages %}
+          <li style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--sp-4)">
+            <a href="{{ p.url }}" style="font-family:var(--font-display); font-weight:700; color:var(--accent-rust); font-size:18px; text-decoration:none; letter-spacing:-0.012em">{{ p.title }}</a>
+            {% if p.description %}<p style="font-size:13.5px; color:var(--fg-2); margin: 6px 0 0">{{ p.description }}</p>{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  {% if blog_posts | length == 0 and wiki_pages | length == 0 %}
+    <p style="color: var(--fg-muted)">No content with this tag yet.</p>
+  {% endif %}
+</div>
+{% endblock content %}

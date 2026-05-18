@@ -1,0 +1,24 @@
+title = "Aphid EV"
+base_url = "https://bladlus.se"
+description = "Converting a 1961 VW Beetle to electric drive using a Nissan Leaf drivetrain. Build log and research notes."
+theme_dir = "theme"
+favicon = "static/logo.png"
+wiki_categories = ["Components", "Electronics", "Architecture", "Software", "Firmware"]
+wiki_default_category = "Other"
+
+[[authors]]
+name = "lhelge"
+link = "https://lhelge.se"
+email = "linus@lhelge.se"
+
+[[socials]]
+platform = "github"
+url = "https://github.com/aphid-ev"
+
+[[socials]]
+platform = "youtube"
+url = "https://www.youtube.com/@aphid-ev"
+
+[[socials]]
+platform = "email"
+url = "mailto:info@bladlus.se"

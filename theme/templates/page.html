@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page page-narrow">
+  <header class="about-hero">
+    <div class="hero-eyebrow" style="display:inline-flex; margin-bottom: 6px">{{ title }}</div>
+    <h1>{{ title }}</h1>
+    {% if description %}<p class="lede" style="margin: 0">{{ description }}</p>{% endif %}
+  </header>
+
+  <article class="article">
+    {{ content | safe }}
+  </article>
+</div>
+{% endblock content %}

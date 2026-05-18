@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block page_title %}{% if title %}{{ title }} — {{ site_title }}{% else %}{{ site_title }}{% endif %}{%
+    endblock %}</title>
+
+  <link rel="stylesheet" href="/static/css/theme.css">
+  {{ favicon_tags | safe }}
+
+  <link rel="alternate" type="application/atom+xml" title="{{ site_title }} — Atom" href="{{ feed_atom_url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site_title }} — RSS" href="{{ feed_rss_url }}">
+
+  {% set meta_title = title | default(value=site_title) %}
+  {% set meta_desc = description | default(value=site_description | default(value="")) %}
+  {% if meta_desc %}
+  <meta name="description" content="{{ meta_desc }}">{% endif %}
+
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+  <meta property="og:site_name" content="{{ site_title }}">
+  <meta property="og:title" content="{{ meta_title }}">
+  {% if meta_desc %}
+  <meta property="og:description" content="{{ meta_desc }}">{% endif %}
+  {% if canonical_url %}
+  <meta property="og:url" content="{{ canonical_url }}">{% endif %}
+  {% set share_image = og_image | default(value=social_image_url | default(value="")) %}
+  {% if share_image %}
+  <meta property="og:image" content="{{ share_image }}">{% endif %}
+
+  <meta name="twitter:card" content="{% if share_image %}summary_large_image{% else %}summary{% endif %}">
+  <meta name="twitter:title" content="{{ meta_title }}">
+  {% if meta_desc %}
+  <meta name="twitter:description" content="{{ meta_desc }}">{% endif %}
+  {% if share_image %}
+  <meta name="twitter:image" content="{{ share_image }}">{% endif %}
+
+  {% block article_meta %}{% endblock %}
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+  <header class="site-header">
+    <a href="/" class="brand" aria-label="{{ site_title }}">
+      <span class="brand-mark"><img src="/static/images/logo.png" alt=""></span>
+      <span class="brand-name">Aphid<span class="dot">·</span>EV</span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
+    <label for="nav-toggle" class="nav-burger" aria-hidden="true">
+      <svg class="ico-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+      <svg class="ico-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </label>
+    <div class="nav-panel">
+      <nav class="site-nav">
+        <a href="/blog/" {% block nav_blog %}{% endblock %}>Build log</a>
+        <a href="/wiki/" {% block nav_wiki %}{% endblock %}>Wiki</a>
+        {% for page in nav_pages %}
+        <a href="{{ page.url }}">{{ page.title }}</a>
+        {% endfor %}
+      </nav>
+      <div class="site-header-right">
+        {% for social in socials %}
+        <a class="icon-btn" href="{{ social.url }}" target="_blank" rel="noopener noreferrer"
+          aria-label="{{ social.platform | capitalize }}">
+          <span class="social-ico" style="--icon: url(/static/socials/{{ social.platform }}.svg)"></span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-col">
+        <h6>{{ site_title }}</h6>
+        {% if site_description %}<p>{{ site_description }}</p>{% endif %}
+      </div>
+      <div class="site-footer-col site-footer-col-right">
+        <h6>Subscribe</h6>
+        <a href="{{ feed_atom_url }}" class="feed-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 11a9 9 0 0 1 9 9" />
+            <path d="M4 4a16 16 0 0 1 16 16" />
+            <circle cx="5" cy="19" r="1" />
+          </svg>
+          Atom feed
+        </a>
+        <a href="{{ feed_rss_url }}" class="feed-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 11a9 9 0 0 1 9 9" />
+            <path d="M4 4a16 16 0 0 1 16 16" />
+            <circle cx="5" cy="19" r="1" />
+          </svg>
+          RSS feed
+        </a>
+      </div>
+    </div>
+    <div class="site-footer-strip">
+      <span>built with <a href="https://aphid.lhelge.se" style="color:var(--accent-rust); text-decoration:none">aphid {{
+          version }}</a></span>
+      <span>hosted on <a href="https://github.com/aphid-ev/aphid-ev.github.io"
+          style="color:var(--accent-rust); text-decoration:none">github</a></span>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll-spy: highlight the TOC entry for the currently visible section
+    (() => {
+      const links = document.querySelectorAll('.toc-list a');
+      if (!links.length) return;
+      const headings = [];
+      links.forEach(a => {
+        const el = document.getElementById(a.getAttribute('href').slice(1));
+        if (el) headings.push(el);
+      });
+      if (!headings.length) return;
+
+      function activate(id) {
+        links.forEach(a => a.classList.toggle('active',
+          a.getAttribute('href') === '#' + id));
+      }
+
+      function update() {
+        const trigger = window.scrollY + 90;
+        let current = headings[0].id;
+        for (const h of headings) {
+          if (h.offsetTop <= trigger) current = h.id;
+          else break;
+        }
+        activate(current);
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+  </script>
+
+  {% if contains_mermaid %}
+  <script src="/static/js/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      themeVariables: {
+        darkMode: true,
+        background: '#1A1614',
+        primaryColor: '#352822',
+        primaryTextColor: '#EDE3D2',
+        primaryBorderColor: '#5A4636',
+        secondaryColor: '#2A211C',
+        secondaryTextColor: '#EDE3D2',
+        secondaryBorderColor: '#3D2F26',
+        tertiaryColor: '#14100E',
+        tertiaryTextColor: '#C9BEA9',
+        tertiaryBorderColor: '#3D2F26',
+        lineColor: '#C9622E',
+        textColor: '#EDE3D2',
+        mainBkg: '#352822',
+        nodeBorder: '#5A4636',
+        nodeTextColor: '#EDE3D2',
+        clusterBkg: '#2A211C',
+        clusterBorder: '#3D2F26',
+        defaultLinkColor: '#C9622E',
+        titleColor: '#EDE3D2',
+        edgeLabelBackground: '#1A1614',
+        labelTextColor: '#EDE3D2',
+        labelColor: '#EDE3D2',
+        noteBkgColor: '#E8A04A',
+        noteTextColor: '#1A1614',
+        noteBorderColor: '#5A4636',
+        specialStateColor: '#C9622E',
+        altBackground: '#2A211C',
+        transitionColor: '#C9622E',
+        transitionLabelColor: '#EDE3D2'
+      }
+    });
+  </script>
+  {% endif %}
+</body>
+
+</html>
