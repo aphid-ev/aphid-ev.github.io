@@ -1176,6 +1176,21 @@ a:hover {
   font-weight: 500;
 }
 
+/* Wiki sidebar accordion — always visible on desktop, collapsible on mobile */
+.wiki-sidebar-accordion {
+  display: block;
+}
+
+.wiki-sidebar-accordion .wiki-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.wiki-sidebar-toggle {
+  display: none;
+}
+
 /* ============================================================
    Article
    ============================================================ */
@@ -2097,6 +2112,47 @@ pre.mermaid svg {
 
   .wiki-sidebar {
     order: -1;
+  }
+
+  .wiki-sidebar-index {
+    display: none;
+  }
+
+  .wiki-sidebar-accordion {
+    display: block;
+  }
+
+  .wiki-sidebar-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-caps);
+    color: var(--accent-green);
+    padding: var(--sp-2);
+    list-style: none;
+  }
+
+  .wiki-sidebar-toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .wiki-sidebar-toggle::before {
+    content: "▶";
+    font-size: 9px;
+    transition: transform 0.2s ease;
+  }
+
+  .wiki-sidebar-accordion[open]>.wiki-sidebar-toggle::before {
+    transform: rotate(90deg);
+  }
+
+  .wiki-sidebar-content {
+    padding-top: var(--sp-3);
   }
 
   .subsystem-grid {

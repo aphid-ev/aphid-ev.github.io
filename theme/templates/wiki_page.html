@@ -5,14 +5,19 @@
 {% block content %}
 <div class="page-grid-3">
   <aside class="wiki-sidebar">
-    {% for cat in wiki_categories %}
-      <div class="group">
-        <div class="group-h">{{ cat.name }} <span class="count">{{ cat.pages | length }}</span></div>
-        {% for p in cat.pages %}
-          <a href="{{ p.url }}"{% if p.url == url %} class="active"{% endif %}><span>{{ p.title }}</span></a>
+    <details class="wiki-sidebar-accordion">
+      <summary class="wiki-sidebar-toggle">Wiki pages</summary>
+      <div class="wiki-sidebar-content">
+        {% for cat in wiki_categories %}
+        <div class="group">
+          <div class="group-h">{{ cat.name }} <span class="count">{{ cat.pages | length }}</span></div>
+          {% for p in cat.pages %}
+          <a href="{{ p.url }}" {% if p.url==url %} class="active" {% endif %}><span>{{ p.title }}</span></a>
+          {% endfor %}
+        </div>
         {% endfor %}
       </div>
-    {% endfor %}
+    </details>
   </aside>
 
   <div>
@@ -31,8 +36,8 @@
 
     <div class="post-meta">
       {% if tags %}
-        {% for t in tags %}<a class="tag" href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% endfor %}
-        <span class="sep">·</span>
+      {% for t in tags %}<a class="tag" href="/tags/{{ t.slug }}/">{{ t.name }}</a>{% endfor %}
+      <span class="sep">·</span>
       {% endif %}
       {% if updated %}<span class="mono">last edit {{ updated }}</span>
       {% elif created %}<span class="mono">created {{ created }}</span>{% endif %}
@@ -44,31 +49,32 @@
     </article>
 
     {% if backlinks and backlinks | length > 0 %}
-      <section class="linked-from">
-        <div class="lf-h">
-          <span>Linked from the build log</span>
-          <span class="count">{{ backlinks | length }} post{% if backlinks | length != 1 %}s{% endif %} reference this page</span>
-        </div>
-        <ul class="linked-from-list">
-          {% for b in backlinks %}
-            <li><a href="{{ b.url }}">{{ b.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </section>
+    <section class="linked-from">
+      <div class="lf-h">
+        <span>Linked from the build log</span>
+        <span class="count">{{ backlinks | length }} post{% if backlinks | length != 1 %}s{% endif %} reference this
+          page</span>
+      </div>
+      <ul class="linked-from-list">
+        {% for b in backlinks %}
+        <li><a href="{{ b.url }}">{{ b.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
     {% endif %}
   </div>
 
   {% if toc and toc | length > 0 %}
-    <aside class="toc">
-      <div class="toc-h">On this page</div>
-      <ul class="toc-list">
-        {% for h in toc %}
-          <li><a href="#{{ h.id }}" class="l{{ h.level }}">{{ h.text }}</a></li>
-        {% endfor %}
-      </ul>
-    </aside>
+  <aside class="toc">
+    <div class="toc-h">On this page</div>
+    <ul class="toc-list">
+      {% for h in toc %}
+      <li><a href="#{{ h.id }}" class="l{{ h.level }}">{{ h.text }}</a></li>
+      {% endfor %}
+    </ul>
+  </aside>
   {% else %}
-    <div></div>
+  <div></div>
   {% endif %}
 </div>
 {% endblock content %}
