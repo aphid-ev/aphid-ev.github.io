@@ -2211,4 +2211,12 @@ pre.mermaid svg {
   .site-footer-inner {
     grid-template-columns: 1fr;
   }
+
+  .site-footer-col-right {
+    text-align: left;
+  }
+
+  .site-footer-col-right .feed-link {
+    justify-content: flex-start;
+  }
 }
