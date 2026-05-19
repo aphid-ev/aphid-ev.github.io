@@ -3,8 +3,22 @@ base_url = "https://bladlus.se"
 description = "Converting a 1961 VW Beetle to electric drive using a Nissan Leaf drivetrain. Build log and research notes."
 theme_dir = "theme"
 favicon = "static/logo.png"
-wiki_categories = ["Components", "Electronics", "Architecture", "Software", "Firmware"]
 wiki_default_category = "Other"
+
+[[wiki_categories]]
+name = "Components"
+
+[[wiki_categories]]
+name = "Electronics"
+
+[[wiki_categories]]
+name = "Architecture"
+
+[[wiki_categories]]
+name = "Software"
+
+[[wiki_categories]]
+name = "Firmware"
 
 [[authors]]
 name = "lhelge"
