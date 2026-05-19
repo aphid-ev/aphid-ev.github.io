@@ -7,7 +7,7 @@
 <div class="page page-narrow">
   <header style="margin-bottom: var(--sp-6)">
     <div class="hero-eyebrow" style="display:inline-flex">The build log</div>
-    <h1 style="font-family:var(--font-display); color:var(--accent-rust); font-size:38px; line-height:1.1; letter-spacing:-0.018em; margin:8px 0 8px">
+    <h1 class="article-h1">
       Every step, written down.
     </h1>
     <p style="color:var(--fg-2); font-size:16px; max-width:56ch; margin:0">
@@ -17,41 +17,43 @@
   </header>
 
   {% if posts and posts | length > 0 %}
-    {% set first = posts[0] %}
-    <a href="{{ first.url }}" class="post-featured">
-      <div class="thumb">
-        {% if first.image %}<img src="{{ first.image }}" alt="">{% endif %}
+  {% set first = posts[0] %}
+  <a href="{{ first.url }}" class="post-featured">
+    <div class="thumb">
+      {% if first.image %}<img src="{{ first.image }}" alt="">{% endif %}
+    </div>
+    <div class="body">
+      <div class="latest-flag"><span class="led"></span> Latest</div>
+      {% if first.created %}<div class="num"
+        style="font-family:var(--font-mono); font-size:11px; color:var(--accent-green); letter-spacing:0.08em; text-transform:uppercase; font-weight:600; margin-bottom:4px">
+        {{ first.created }} · {{ first.reading_time_minutes }} min</div>{% endif %}
+      <h3>{{ first.title }}</h3>
+      {% if first.description %}<p class="excerpt">{{ first.description }}</p>{% endif %}
+      {% if first.tags and first.tags | length > 0 %}
+      <div class="meta" style="display:flex; gap:6px; flex-wrap:wrap; margin-top: var(--sp-3)">
+        {% for t in first.tags %}<span class="tag">{{ t.name }}</span>{% endfor %}
       </div>
-      <div class="body">
-        <div class="latest-flag"><span class="led"></span> Latest</div>
-        {% if first.created %}<div class="num" style="font-family:var(--font-mono); font-size:11px; color:var(--accent-green); letter-spacing:0.08em; text-transform:uppercase; font-weight:600; margin-bottom:4px">{{ first.created }} · {{ first.reading_time_minutes }} min</div>{% endif %}
-        <h3>{{ first.title }}</h3>
-        {% if first.description %}<p class="excerpt">{{ first.description }}</p>{% endif %}
-        {% if first.tags and first.tags | length > 0 %}
-          <div class="meta" style="display:flex; gap:6px; flex-wrap:wrap; margin-top: var(--sp-3)">
-            {% for t in first.tags %}<span class="tag">{{ t.name }}</span>{% endfor %}
-          </div>
-        {% endif %}
-      </div>
-    </a>
+      {% endif %}
+    </div>
+  </a>
 
-    {% for p in posts | slice(start=1) %}
-      <a href="{{ p.url }}" class="post-row">
-        <div class="thumb-sm">{% if p.image %}<img src="{{ p.image }}" alt="">{% endif %}</div>
-        <div>
-          <div class="meta" style="margin-bottom:4px">
-            {% for t in p.tags | slice(end=3) %}<span class="tag">{{ t.name }}</span>{% endfor %}
-            {% if p.tags | length > 0 %}<span class="sep">·</span>{% endif %}
-            {% if p.created %}<span class="mono">{{ p.created }}</span><span class="sep">·</span>{% endif %}
-            <span class="mono">{{ p.reading_time_minutes }} min</span>
-          </div>
-          <h3>{{ p.title }}</h3>
-          {% if p.description %}<p class="excerpt">{{ p.description }}</p>{% endif %}
-        </div>
-      </a>
-    {% endfor %}
+  {% for p in posts | slice(start=1) %}
+  <a href="{{ p.url }}" class="post-row">
+    <div class="thumb-sm">{% if p.image %}<img src="{{ p.image }}" alt="">{% endif %}</div>
+    <div>
+      <div class="meta" style="margin-bottom:4px">
+        {% for t in p.tags | slice(end=3) %}<span class="tag">{{ t.name }}</span>{% endfor %}
+        {% if p.tags | length > 0 %}<span class="sep">·</span>{% endif %}
+        {% if p.created %}<span class="mono">{{ p.created }}</span><span class="sep">·</span>{% endif %}
+        <span class="mono">{{ p.reading_time_minutes }} min</span>
+      </div>
+      <h3>{{ p.title }}</h3>
+      {% if p.description %}<p class="excerpt">{{ p.description }}</p>{% endif %}
+    </div>
+  </a>
+  {% endfor %}
   {% else %}
-    <p style="color: var(--fg-muted);">No posts yet.</p>
+  <p style="color: var(--fg-muted);">No posts yet.</p>
   {% endif %}
 
   {% if pagination %}{% include "pagination.html" %}{% endif %}

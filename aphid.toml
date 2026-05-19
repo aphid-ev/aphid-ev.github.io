@@ -7,18 +7,28 @@ wiki_default_category = "Other"
 
 [[wiki_categories]]
 name = "Components"
+description = "Physical drivetrain parts — motor, inverter, PDM, and VCM hardware."
+icon = "/static/images/category/components.svg"
 
 [[wiki_categories]]
 name = "Electronics"
+description = "HV and LV wiring, contactors, BMS, sensors, and thermal management."
+icon = "/static/images/category/electronics.svg"
 
 [[wiki_categories]]
 name = "Architecture"
+description = "System-level design decisions, safety concept, and interlock logic."
+icon = "/static/images/category/architecture.svg"
 
 [[wiki_categories]]
 name = "Software"
+description = "CAN protocols, message definitions, and software interfaces."
+icon = "/static/images/category/software.svg"
 
 [[wiki_categories]]
 name = "Firmware"
+description = "Embedded code running on the VCM and monitor boards."
+icon = "/static/images/category/firmware.svg"
 
 [[authors]]
 name = "lhelge"

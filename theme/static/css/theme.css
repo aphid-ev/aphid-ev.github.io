@@ -1109,6 +1109,107 @@ a:hover {
 }
 
 /* ============================================================
+   Wiki index
+   ============================================================ */
+.wiki-intro {
+  color: var(--fg-2);
+  font-size: 16px;
+  max-width: 58ch;
+  margin: 0 0 var(--sp-6);
+  line-height: 1.6;
+}
+
+.wiki-intro p {
+  margin: 0 0 var(--sp-2);
+}
+
+.wiki-category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-4);
+}
+
+.wiki-category-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-5);
+}
+
+.wiki-category-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: inline-block;
+  background-color: var(--accent-green);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.wiki-category-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.wiki-category-card-body h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--accent-rust);
+  font-size: 17px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.wiki-category-card-body p {
+  font-size: 13px;
+  color: var(--fg-2);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.wiki-category-pages {
+  list-style: none;
+  padding: 0;
+  margin: var(--sp-3) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--sp-3);
+}
+
+.wiki-category-pages li a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--fg-2);
+  text-decoration: none;
+  padding: 3px 0;
+}
+
+.wiki-category-pages li a::before {
+  content: '→';
+  color: var(--fg-faint);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.wiki-category-pages li a:hover {
+  color: var(--accent-amber);
+}
+
+/* ============================================================
    Wiki sidebar
    ============================================================ */
 .wiki-sidebar {
@@ -1225,7 +1326,7 @@ a:hover {
 .article-h1 {
   font-family: var(--font-display);
   font-weight: 800;
-  color: var(--fg-1);
+  color: var(--accent-rust);
   letter-spacing: -0.018em;
   font-size: 42px;
   line-height: 1.06;
@@ -2021,19 +2122,9 @@ pre.mermaid svg {
    About / standalone page hero
    ============================================================ */
 .about-hero {
-  padding: var(--sp-7) 0 var(--sp-6);
+  margin-bottom: var(--sp-6);
   border-bottom: 1px solid var(--border);
-  margin-bottom: var(--sp-7);
-}
-
-.about-hero h1 {
-  font-family: var(--font-display);
-  font-weight: 800;
-  color: var(--fg-1);
-  font-size: 38px;
-  line-height: 1.05;
-  letter-spacing: -0.018em;
-  margin: 0 0 var(--sp-2);
+  padding-bottom: var(--sp-6);
 }
 
 /* ============================================================
@@ -2112,10 +2203,6 @@ pre.mermaid svg {
 
   .wiki-sidebar {
     order: -1;
-  }
-
-  .wiki-sidebar-index {
-    display: none;
   }
 
   .wiki-sidebar-accordion {
@@ -2251,6 +2338,10 @@ pre.mermaid svg {
   .posts-3up,
   .subsystem-grid,
   .subsystem-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .wiki-category-grid {
     grid-template-columns: 1fr;
   }
 

@@ -4,69 +4,34 @@
 {% block nav_wiki %} class="active"{% endblock %}
 
 {% block content %}
-<div class="page-grid">
-  <aside class="wiki-sidebar wiki-sidebar-index">
-    {% for cat in categories %}
-    <div class="group">
-      <div class="group-h">{{ cat.name }} <span class="count">{{ cat.pages | length }}</span></div>
-      {% for p in cat.pages %}
-      <a href="{{ p.url }}"><span>{{ p.title }}</span></a>
-      {% endfor %}
-    </div>
-    {% endfor %}
-  </aside>
-
-  <div>
+<div class="page page-narrow">
+  <header style="margin-bottom: var(--sp-6)">
     <div class="hero-eyebrow" style="display:inline-flex">The wiki</div>
-    <h1
-      style="font-family:var(--font-display); color:var(--accent-rust); font-size:38px; line-height:1.1; letter-spacing:-0.018em; margin:8px 0 var(--sp-2)">
+    <h1 class="article-h1">
       Canonical reference for every subsystem.
     </h1>
-    <p style="color:var(--fg-2); font-size:16px; max-width:58ch; margin:0 0 var(--sp-6)">
-      The build log records what happened on a given weekend. The wiki is the
-      timeless record of how each subsystem actually works — kept current across
-      all the false starts.
-    </p>
+    {% if wiki_intro %}
+    <div class="wiki-intro">{{ wiki_intro.content | safe }}</div>
+    {% endif %}
+  </header>
 
-    <div class="subsystem-grid subsystem-grid-2">
-      {% for cat in categories %}
-      <a href="#{{ cat.name | slugify }}" class="subsystem-card wiki-card">
+  <div class="wiki-category-grid">
+    {% for cat in categories %}
+    <div class="wiki-category-card">
+      {% if cat.icon %}
+      <span class="wiki-category-icon"
+        style="-webkit-mask-image: url('{{ cat.icon }}'); mask-image: url('{{ cat.icon }}');" aria-hidden="true"></span>
+      {% endif %}
+      <div class="wiki-category-card-body">
         <h3>{{ cat.name }}</h3>
-        <p class="desc">{{ cat.pages | length }} page{% if cat.pages | length != 1 %}s{% endif %} in this category.</p>
-        {% if cat.pages | length > 0 %}
-        <ul class="pagelist">
-          {% for p in cat.pages | slice(end=4) %}
-          <li>{{ p.title }}</li>
+        {% if cat.description %}<p>{{ cat.description }}</p>{% endif %}
+        <ul class="wiki-category-pages">
+          {% for p in cat.pages %}
+          <li><a href="{{ p.url }}">{{ p.title }}</a></li>
           {% endfor %}
         </ul>
-        {% if cat.pages | length > 4 %}
-        <div class="more">+ {{ cat.pages | length - 4 }} more</div>
-        {% endif %}
-        {% endif %}
-        <div class="meta-row">
-          <span class="pages">{{ cat.pages | length }} pages</span>
-        </div>
-      </a>
-      {% endfor %}
-    </div>
-
-    {% for cat in categories %}
-    <section class="section" id="{{ cat.name | slugify }}">
-      <div class="section-head">
-        <h2>{{ cat.name }}</h2>
-        <span class="mono muted">{{ cat.pages | length }} page{% if cat.pages | length != 1 %}s{% endif %}</span>
       </div>
-      <ul
-        style="list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap: var(--sp-2)">
-        {% for p in cat.pages %}
-        <li
-          style="padding: 8px 12px; border-left: 2px solid var(--border); background: var(--bg-surface); border-radius: var(--r-sm)">
-          <a href="{{ p.url }}" style="color: var(--accent-rust); text-decoration:none; font-weight:500">{{ p.title
-            }}</a>
-        </li>
-        {% endfor %}
-      </ul>
-    </section>
+    </div>
     {% endfor %}
   </div>
 </div>
